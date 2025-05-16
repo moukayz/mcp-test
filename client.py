@@ -12,7 +12,7 @@ from mcp.types import CallToolResult, CallToolRequest
 from dotenv import load_dotenv
 from openai import AsyncOpenAI, AsyncStream, OpenAI
 from openai.types.chat import ChatCompletionChunk
-from openai.types.chat.chat_completion_chunk import ChoiceDelta
+from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaToolCall
 
 load_dotenv()  # load environment variables from .env
 
@@ -82,6 +82,7 @@ def is_valid_json(json_str):
 
 @dataclass
 class ChatResponseContext:
+    tool_info_map: dict[int, ChoiceDeltaToolCall] = field(default_factory=dict)
     tool_info: list[dict] = field(default_factory=list)
     tool_call_tasks: list[asyncio.Task] = field(default_factory=list)
     is_answering: bool = False
@@ -210,25 +211,17 @@ class MCPClient:
                     break
 
                 index = tool_call.index
-                if len(context.tool_info) <= index:
-                    context.tool_info.append(
-                        {"id": "", "name": "", "arguments": "", "result": None}
-                    )
+                if index not in context.tool_info_map:
+                    context.tool_info_map[index] = tool_call
+                else:
+                    context.tool_info_map[index].function.arguments += tool_call.function.arguments
 
-                if tool_call.id:
-                    context.tool_info[index]["id"] = tool_call.id
 
-                if tool_call.function and tool_call.function.name:
-                    context.tool_info[index]["name"] += tool_call.function.name
-
-                if tool_call.function and tool_call.function.arguments:
-                    context.tool_info[index][
-                        "arguments"
-                    ] += tool_call.function.arguments
-
-                if is_valid_json(context.tool_info[index]["arguments"]):
-                    tool_name = context.tool_info[index]["name"]
-                    tool_args = json.loads(context.tool_info[index]["arguments"])
+                current_tool_call = context.tool_info_map[index]
+                if is_valid_json(current_tool_call.function.arguments):
+                    print(f"Scheduling tool call {current_tool_call.function.name}")
+                    tool_name = current_tool_call.function.name
+                    tool_args = json.loads(current_tool_call.function.arguments)
                     tool_task = asyncio.create_task(
                         self.call_tool(tool_name, tool_args)
                     )
@@ -246,6 +239,7 @@ class MCPClient:
                 if delta.tool_calls is not None:
                     process_tool_call_chunk(delta, context)
 
+        tool_call_results = []
         if context.tool_call_tasks:
             print("\n" + "*" * 20 + "工具调用结果" + "*" * 20)
             for index, result in enumerate(
@@ -253,21 +247,23 @@ class MCPClient:
             ):
                 print(f"tool_call_result: {result}")
                 if isinstance(result, Exception):
-                    context.tool_info[index]["result"] = {
+                    tool_call_results.append({
                         "content": [
                             {
-                                "text": f"Error calling tool {context.tool_info[index]['name']}: {result}"
+                                "text": f"Error calling tool {context.tool_info_map[index].function.name}: {result}"
                             }
                         ],
-                        "isError": True,
-                    }
+                            "isError": True,
+                        }
+                    )
                 else:
-                    context.tool_info[index]["result"] = result
+                    tool_call_results.append(result)
 
         return {
             "answer_content": context.answer_content,
             "reasoning_content": context.reasoning_content,
-            "tool_info": context.tool_info,
+            "tool_info": context.tool_info_map,
+            "tool_call_results": tool_call_results,
         }
 
     async def get_response_2(self, messages):
@@ -286,43 +282,26 @@ class MCPClient:
 
             answer_content = result["answer_content"]
             tool_info = result["tool_info"]
+            tool_call_results = result["tool_call_results"]
 
             assistant_msg_record = {
                 "role": "assistant",
                 "content": answer_content,
             }
-            tool_result_records = []
-            for index in range(len(tool_info)):
-                if not assistant_msg_record.get("tool_calls"):
-                    assistant_msg_record["tool_calls"] = []
-
-                info = tool_info[index]
-
-                tool_call_record = {
-                    "id": info["id"],
-                    "function": {
-                        "name": info["name"],
-                        "arguments": info["arguments"],
-                    },
-                    "index": index,
-                    "type": "function",
-                }
-                assistant_msg_record["tool_calls"].append(tool_call_record)
-                tool_result_records.append(
-                    {
-                        "content": str(info["result"]),
-                        "role": "tool",
-                        "tool_call_id": info["id"],
-                    }
-                )
+            if tool_info:
+                assistant_msg_record["tool_calls"] = tool_info.values()
 
             messages.append(assistant_msg_record)
 
-            # if there is no tool result, it means the tool calling is done
-            # break the loop and return the final text
-            # otherwise, continue the chat loop to get the next round of response
-            if tool_result_records:
-                messages.extend(tool_result_records)
+            if tool_call_results:
+                messages.extend(
+                    {
+                        "content": str(tool_call_result),
+                        "role": "tool",
+                        "tool_call_id": tool_info[idx].id,
+                    }
+                    for idx, tool_call_result in enumerate(tool_call_results)
+                )
             else:
                 break
 
