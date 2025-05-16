@@ -10,6 +10,7 @@ dependencies = [
     "geopy>=2.4.1",
     "gradio>=5.29.0",
     "mcp[cli]>=1.8.1",
+    "openai>=1.78.1",
     "pylint>=3.3.7",
     "requests>=2.32.3",
     "rich>=14.0.0",
