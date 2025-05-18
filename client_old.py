@@ -1,4 +1,3 @@
-from rich import print as rprint
 import asyncio
 from dataclasses import dataclass, field
 import json
@@ -13,7 +12,7 @@ from mcp.types import CallToolResult, CallToolRequest
 from dotenv import load_dotenv
 from openai import AsyncOpenAI, AsyncStream, OpenAI
 from openai.types.chat import ChatCompletionChunk
-from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaToolCall
+from openai.types.chat.chat_completion_chunk import ChoiceDelta
 
 load_dotenv()  # load environment variables from .env
 
@@ -83,7 +82,6 @@ def is_valid_json(json_str):
 
 @dataclass
 class ChatResponseContext:
-    tool_info_map: dict[int, ChoiceDeltaToolCall] = field(default_factory=dict)
     tool_info: list[dict] = field(default_factory=list)
     tool_call_tasks: list[asyncio.Task] = field(default_factory=list)
     is_answering: bool = False
@@ -128,7 +126,6 @@ class MCPClient:
                 self.mcpToolsSessionMap[tool.name] = session
 
     async def get_chat_completion(self, messages):
-        # rprint(messages)
         response = await self.qwenClient.chat.completions.create(
             # model="qwen-turbo-2024-11-01",
             model="qwen-plus-2025-04-28",
@@ -136,8 +133,7 @@ class MCPClient:
             messages=messages,
             tools=self.available_tools,
             tool_choice="auto",
-            # extra_body={"enable_thinking": True, "thinking_budget": 200},
-            extra_body={"enable_thinking": True},
+            extra_body={"enable_thinking": False, "thinking_budget": 100},
             stream=True,
             parallel_tool_calls=True,
         )
@@ -181,8 +177,8 @@ class MCPClient:
         def process_reasoning_chunk(delta: ChoiceDelta, context: ChatResponseContext):
             if not context.is_reasoning:
                 context.is_reasoning = True
-                rprint("[bold cyan]" + "\n" + "=" * 20 + "思考过程" + "=" * 20 + "[/bold cyan]\n")
-            rprint(delta.reasoning_content, end="", flush=True)
+                print("\n" + "=" * 20 + "思考过程" + "=" * 20 + "\n")
+            print(delta.reasoning_content, end="", flush=True)
             context.reasoning_content += delta.reasoning_content
 
             if delta.tool_calls is not None:
@@ -193,10 +189,10 @@ class MCPClient:
         def process_answer_chunk(delta: ChoiceDelta, context: ChatResponseContext):
             if not context.is_answering:
                 context.is_answering = True
-                rprint("[bold yellow]" + "\n" + "=" * 20 + "完整回复" + "=" * 20 + "[/bold yellow]\n")
+                print("\n" + "=" * 20 + "完整回复" + "=" * 20 + "\n")
                 context.is_answering = True
 
-            rprint(delta.content, end="", flush=True)
+            print(delta.content, end="", flush=True)
             context.answer_content += delta.content
 
         def process_tool_call_chunk(delta: ChoiceDelta, context: ChatResponseContext):
@@ -204,7 +200,7 @@ class MCPClient:
                 print("\n" + "*" * 20 + "开始工具调用" + "*" * 20)
                 context.is_tool_calling = True
 
-            # print(f"\ntool_call chunk: {delta.tool_calls}")
+            print(f"\ntool_call chunk: {delta.tool_calls}")
             for tool_call in delta.tool_calls:
                 if (
                     tool_call.function
@@ -214,16 +210,25 @@ class MCPClient:
                     break
 
                 index = tool_call.index
-                if index not in context.tool_info_map:
-                    context.tool_info_map[index] = tool_call
-                else:
-                    context.tool_info_map[index].function.arguments += tool_call.function.arguments
+                if len(context.tool_info) <= index:
+                    context.tool_info.append(
+                        {"id": "", "name": "", "arguments": "", "result": None}
+                    )
 
-                current_tool_call = context.tool_info_map[index]
-                if is_valid_json(current_tool_call.function.arguments):
-                    print(f"Scheduling tool call {current_tool_call.function.name}")
-                    tool_name = current_tool_call.function.name
-                    tool_args = json.loads(current_tool_call.function.arguments)
+                if tool_call.id:
+                    context.tool_info[index]["id"] = tool_call.id
+
+                if tool_call.function and tool_call.function.name:
+                    context.tool_info[index]["name"] += tool_call.function.name
+
+                if tool_call.function and tool_call.function.arguments:
+                    context.tool_info[index][
+                        "arguments"
+                    ] += tool_call.function.arguments
+
+                if is_valid_json(context.tool_info[index]["arguments"]):
+                    tool_name = context.tool_info[index]["name"]
+                    tool_args = json.loads(context.tool_info[index]["arguments"])
                     tool_task = asyncio.create_task(
                         self.call_tool(tool_name, tool_args)
                     )
@@ -241,7 +246,6 @@ class MCPClient:
                 if delta.tool_calls is not None:
                     process_tool_call_chunk(delta, context)
 
-        tool_call_results = []
         if context.tool_call_tasks:
             print("\n" + "*" * 20 + "工具调用结果" + "*" * 20)
             for index, result in enumerate(
@@ -249,23 +253,21 @@ class MCPClient:
             ):
                 print(f"tool_call_result: {result}")
                 if isinstance(result, Exception):
-                    tool_call_results.append({
+                    context.tool_info[index]["result"] = {
                         "content": [
                             {
-                                "text": f"Error calling tool {context.tool_info_map[index].function.name}: {result}"
+                                "text": f"Error calling tool {context.tool_info[index]['name']}: {result}"
                             }
                         ],
-                            "isError": True,
-                        }
-                    )
+                        "isError": True,
+                    }
                 else:
-                    tool_call_results.append(result)
+                    context.tool_info[index]["result"] = result
 
         return {
             "answer_content": context.answer_content,
             "reasoning_content": context.reasoning_content,
-            "tool_info": context.tool_info_map,
-            "tool_call_results": tool_call_results,
+            "tool_info": context.tool_info,
         }
 
     async def get_response_2(self, messages):
@@ -284,26 +286,43 @@ class MCPClient:
 
             answer_content = result["answer_content"]
             tool_info = result["tool_info"]
-            tool_call_results = result["tool_call_results"]
 
             assistant_msg_record = {
                 "role": "assistant",
                 "content": answer_content,
             }
-            if tool_info:
-                assistant_msg_record["tool_calls"] = tool_info.values()
+            tool_result_records = []
+            for index in range(len(tool_info)):
+                if not assistant_msg_record.get("tool_calls"):
+                    assistant_msg_record["tool_calls"] = []
+
+                info = tool_info[index]
+
+                tool_call_record = {
+                    "id": info["id"],
+                    "function": {
+                        "name": info["name"],
+                        "arguments": info["arguments"],
+                    },
+                    "index": index,
+                    "type": "function",
+                }
+                assistant_msg_record["tool_calls"].append(tool_call_record)
+                tool_result_records.append(
+                    {
+                        "content": str(info["result"]),
+                        "role": "tool",
+                        "tool_call_id": info["id"],
+                    }
+                )
 
             messages.append(assistant_msg_record)
 
-            if tool_call_results:
-                messages.extend(
-                    {
-                        "content": str(tool_call_result),
-                        "role": "tool",
-                        "tool_call_id": tool_info[idx].id,
-                    }
-                    for idx, tool_call_result in enumerate(tool_call_results)
-                )
+            # if there is no tool result, it means the tool calling is done
+            # break the loop and return the final text
+            # otherwise, continue the chat loop to get the next round of response
+            if tool_result_records:
+                messages.extend(tool_result_records)
             else:
                 break
 
@@ -315,7 +334,16 @@ class MCPClient:
         messages = [
             {
                 "role": "system",
-                "content": load_system_prompt(),
+                "content": """you should generate the response step by step.
+                you can use file system tools to achieve file system operations.
+
+                you can use bash executor tools to execute shell commands or scripts.
+                but everytime you need to execute a bash command or script, you should first get my approval then execute it, **especially when the command or script has side effects**.
+
+                you can use python executor tools to execute python code block.
+
+                the current directory is a python project with venv, if you need install any python tools, you can install them using "uv add <package_name>" rather than "pip install <package_name>".
+                """,
             },
         ]
 
@@ -349,10 +377,6 @@ class MCPClient:
         """Clean up resources"""
         await self.exit_stack.aclose()
 
-
-def load_system_prompt():
-    with open("system_prompt.txt", "r") as f:
-        return f.read()
 
 async def main():
     client = MCPClient()
