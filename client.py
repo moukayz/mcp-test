@@ -93,6 +93,11 @@ class ChatResponseContext:
     answer_content: str = ""
 
 
+@dataclass 
+class AssistantResponseChunk:
+    type: str
+    content: str | dict | ChoiceDeltaToolCall
+
 class MCPClient:
     def __init__(self):
         self.mcpSessions = {}
@@ -178,33 +183,19 @@ class MCPClient:
     ):
         context = ChatResponseContext()
 
-        def process_reasoning_chunk(delta: ChoiceDelta, context: ChatResponseContext):
-            if not context.is_reasoning:
-                context.is_reasoning = True
-                rprint("[bold cyan]" + "\n" + "=" * 20 + "思考过程" + "=" * 20 + "[/bold cyan]\n")
-            rprint(delta.reasoning_content, end="", flush=True)
-            context.reasoning_content += delta.reasoning_content
-
+        def process_thinking_chunk(delta: ChoiceDelta, context: ChatResponseContext):
             if delta.tool_calls is not None:
                 print("*" * 20 + "UNEXPECTED TOOL CALLS" + "*" * 20)
                 print(delta.tool_calls)
                 print("*" * 50)
 
-        def process_answer_chunk(delta: ChoiceDelta, context: ChatResponseContext):
-            if not context.is_answering:
-                context.is_answering = True
-                rprint("[bold yellow]" + "\n" + "=" * 20 + "完整回复" + "=" * 20 + "[/bold yellow]\n")
-                context.is_answering = True
+            return AssistantResponseChunk(type="thinking", content=delta.reasoning_content)
 
-            rprint(delta.content, end="", flush=True)
-            context.answer_content += delta.content
+
+        def process_answer_chunk(delta: ChoiceDelta, context: ChatResponseContext):
+            return AssistantResponseChunk(type="answer", content=delta.content)
 
         def process_tool_call_chunk(delta: ChoiceDelta, context: ChatResponseContext):
-            if not context.is_tool_calling:
-                print("\n" + "*" * 20 + "开始工具调用" + "*" * 20)
-                context.is_tool_calling = True
-
-            # print(f"\ntool_call chunk: {delta.tool_calls}")
             for tool_call in delta.tool_calls:
                 if (
                     tool_call.function
@@ -221,55 +212,25 @@ class MCPClient:
 
                 current_tool_call = context.tool_info_map[index]
                 if is_valid_json(current_tool_call.function.arguments):
-                    print(f"Scheduling tool call {current_tool_call.function.name}")
-                    tool_name = current_tool_call.function.name
-                    tool_args = json.loads(current_tool_call.function.arguments)
-                    tool_task = asyncio.create_task(
-                        self.call_tool(tool_name, tool_args)
-                    )
-                    context.tool_call_tasks.append(tool_task)
+                    return AssistantResponseChunk(type="tool_call", content=current_tool_call)
+            
+            return None
 
         async for chunk in response:
             delta = chunk.choices[0].delta
             if hasattr(delta, "reasoning_content") and delta.reasoning_content != None:
-                process_reasoning_chunk(delta, context)
+                yield process_thinking_chunk(delta, context)
 
             else:
                 if delta.content is not None and delta.content != "":
-                    process_answer_chunk(delta, context)
+                    yield process_answer_chunk(delta, context)
 
                 if delta.tool_calls is not None:
-                    process_tool_call_chunk(delta, context)
+                    chunk = process_tool_call_chunk(delta, context)
+                    if chunk is not None:
+                        yield chunk
 
-        tool_call_results = []
-        if context.tool_call_tasks:
-            print("\n" + "*" * 20 + "工具调用结果" + "*" * 20)
-            for index, result in enumerate(
-                await asyncio.gather(*context.tool_call_tasks, return_exceptions=True)
-            ):
-                print(f"tool_call_result: {result}")
-                if isinstance(result, Exception):
-                    tool_call_results.append({
-                        "content": [
-                            {
-                                "text": f"Error calling tool {context.tool_info_map[index].function.name}: {result}"
-                            }
-                        ],
-                            "isError": True,
-                        }
-                    )
-                else:
-                    tool_call_results.append(result)
-
-        return {
-            "answer_content": context.answer_content,
-            "reasoning_content": context.reasoning_content,
-            "tool_info": context.tool_info_map,
-            "tool_call_results": tool_call_results,
-        }
-
-    async def get_response_2(self, messages):
-        final_text = []
+    async def get_assistant_response(self, messages):
 
         round = 1
         while True:
@@ -280,18 +241,34 @@ class MCPClient:
 
             response = await self.get_chat_completion(messages)
 
-            result = await self.process_streamed_response(response)
+            result = self.process_streamed_response(response)
 
-            answer_content = result["answer_content"]
-            tool_info = result["tool_info"]
-            tool_call_results = result["tool_call_results"]
+            answer_content = ""
+            reasoning_content = ""
+            tool_call_tasks = []
+            tool_call_info = []
+
+            async for chunk in result:
+                if chunk.type == "answer":
+                    answer_content += chunk.content
+                    yield AssistantResponseChunk(type="answer", content=chunk.content)
+                elif chunk.type == "thinking":
+                    reasoning_content += chunk.content
+                    yield AssistantResponseChunk(type="thinking", content=chunk.content)
+                elif chunk.type == "tool_call":
+                    task = asyncio.create_task(self.call_tool(chunk.content.function.name, json.loads(chunk.content.function.arguments)))
+                    tool_call_tasks.append(task)
+                    tool_call_info.append(chunk.content)
+                    yield AssistantResponseChunk(type="tool_call", content=f"Calling tool {chunk.content.function.name} with args {str(chunk.content.function.arguments)[:20]}...")
+
+            tool_call_results = await asyncio.gather(*tool_call_tasks, return_exceptions=True)
 
             assistant_msg_record = {
                 "role": "assistant",
                 "content": answer_content,
             }
-            if tool_info:
-                assistant_msg_record["tool_calls"] = tool_info.values()
+            if tool_call_info:
+                assistant_msg_record["tool_calls"] = tool_call_info
 
             messages.append(assistant_msg_record)
 
@@ -300,14 +277,13 @@ class MCPClient:
                     {
                         "content": str(tool_call_result),
                         "role": "tool",
-                        "tool_call_id": tool_info[idx].id,
+                        "tool_call_id": tool_call_info[idx].id,
                     }
                     for idx, tool_call_result in enumerate(tool_call_results)
                 )
             else:
                 break
 
-        return final_text
 
     async def chat_loop(self):
         """Run an interactive chat loop"""
@@ -338,12 +314,26 @@ class MCPClient:
 
                 messages.append({"role": "user", "content": query})
 
-                response = await self.get_response_2(messages)
-                # print("\n" + response)
+                current_type = None
+                async for chunk in self.get_assistant_response(messages):
+                    if chunk.type == "answer":
+                        if current_type != "answer":
+                            current_type = "answer"
+                            rprint("[bold yellow]" + "\n" + "=" * 20 + "完整回复" + "=" * 20 + "[/bold yellow]\n")
+                        rprint(chunk.content, end="", flush=True)
+                    elif chunk.type == "thinking":
+                        if current_type != "thinking":
+                            current_type = "thinking"
+                            rprint("[bold cyan]" + "\n" + "=" * 20 + "思考过程" + "=" * 20 + "[/bold cyan]\n")
+                        rprint(chunk.content, end="", flush=True)
+                    elif chunk.type == "tool_call":
+                        if current_type != "tool_call":
+                            current_type = "tool_call"
+                            rprint("[bold green]" + "\n" + "=" * 20 + "工具调用" + "=" * 20 + "[/bold green]\n")
+                        rprint(chunk.content, end="", flush=True)
 
-            except Exception as e:
-                print(f"\nError: {str(e)}")
-                print(messages)
+            except KeyboardInterrupt:
+               break 
 
     async def cleanup(self):
         """Clean up resources"""
