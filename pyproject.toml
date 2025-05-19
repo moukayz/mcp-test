@@ -11,7 +11,10 @@ dependencies = [
     "gradio>=5.29.0",
     "mcp[cli]>=1.8.1",
     "openai>=1.78.1",
+    "prompt-toolkit>=3.0.51",
     "pylint>=3.3.7",
     "requests>=2.32.3",
     "rich>=14.0.0",
+    "textual>=3.2.0",
+    "textual-dev>=1.7.0",
 ]
