@@ -1,9 +1,10 @@
 from typing import Any
-from rich import print as rprint
+from rich import print as rprint, logging as rich_logging
 import asyncio
 from dataclasses import dataclass, field
 import json
 import os
+import logging
 
 from contextlib import AsyncExitStack
 
@@ -18,35 +19,11 @@ from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaTool
 
 load_dotenv()  # load environment variables from .env
 
-mcpServersConfig = {
-    "fileSystem": {
-        "command": "npx",
-        "args": [
-            "-y",
-            "@modelcontextprotocol/server-filesystem",
-            "/home/mouka/mcp-test",
-        ],
-    },
-    "weather": {
-        "command": "python",
-        "args": [
-            "./server/weather.py",
-        ],
-    },
-    "code_executor": {
-        "command": "python",
-        "args": [
-            "./server/code_executor.py",
-        ],
-    },
-    "brave-search": {
-        "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-brave-search"],
-        "env": {"BRAVE_API_KEY": "BSAPLs6U9IdkmBc-OGLjaRlh4_yis0I"},
-    },
-    "fetch": {"command": "uvx", "args": ["mcp-server-fetch"]},
-}
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+logger.addHandler(rich_logging.RichHandler())
 
+SERVER_CONFIG_FILE = ".server_config.json"
 
 def get_tools_format(tools, type="qwen"):
     if type == "qwen":
@@ -83,14 +60,17 @@ def is_valid_json(json_str):
 
 
 @dataclass
-class ChatResponseContext:
-    tool_info_map: dict[int, ChoiceDeltaToolCall] = field(default_factory=dict)
-
+class ToolCallInfo:
+    id: str
+    name: str
+    args: dict
+    result: CallToolResult
 
 @dataclass 
 class AssistantResponseChunk:
     type: str
-    content: str | dict | ChoiceDeltaToolCall
+    # content: str | dict | ChoiceDeltaToolCall | ToolCallInfo
+    content: str | dict | ToolCallInfo
 
 class MCPClient:
     def __init__(self):
@@ -98,6 +78,7 @@ class MCPClient:
         self.tools : list[Tool] = []
         self.mcpToolsSessionMap = {}
         self.exit_stack = AsyncExitStack()
+        self.mcpServersConfig = {}
 
     @staticmethod
     def get_tool_prompt(tool: Tool, note: str = ""):
@@ -120,23 +101,25 @@ class MCPClient:
         """
 
     async def initialize(self):
-        await self.connect_to_server(mcpServersConfig)
+        with open(SERVER_CONFIG_FILE, "r") as f:
+            self.mcpServersConfig = json.load(f)
+        await self.connect_to_server(self.mcpServersConfig)
 
-    async def call_tool(self, tool_name, tool_args) -> CallToolResult:
-        print(f"call_tool: {tool_name} with args {str(tool_args)[:100]}...")
+    async def call_tool(self,id, tool_name, tool_args) -> ToolCallInfo:
+        logger.info(f"call_tool: {tool_name} with args {str(tool_args)[:100]}...")
         session: ClientSession = self.mcpToolsSessionMap[tool_name]
         if session is None:
-            return CallToolResult(
+            return ToolCallInfo(id=id, name=tool_name, args=tool_args, result=CallToolResult(
                 content=[{"text": f"Cannot find servers for tool {tool_name}"}],
                 isError=True,
-            )
+            ))
 
         result = await session.call_tool(tool_name, tool_args)
-        print(
+        logger.info(
             f"[Calling tool {tool_name} with args {tool_args}], \n  result: {
                 result.content[0].text}"
         )
-        return result
+        return ToolCallInfo(id=id, name=tool_name, args=tool_args, result=result)
 
 
     async def connect_to_server(self, configs: dict):
@@ -270,13 +253,7 @@ class LLMClient:
 
     async def get_assistant_response(self, messages):
 
-        round = 1
         while True:
-            print(
-                f"{'=' * 20} Assistant round {round} {'=' * 20}",
-            )
-            round += 1
-
             response = await self.get_chat_completion(messages)
 
             result = self.process_streamed_response(response)
@@ -284,7 +261,8 @@ class LLMClient:
             answer_content = ""
             reasoning_content = ""
             tool_call_tasks = []
-            tool_call_info = []
+            tool_call_message_params = []
+            tool_call_info = {}
 
             async for chunk in result:
                 if chunk.type == "answer":
@@ -294,28 +272,33 @@ class LLMClient:
                     reasoning_content += chunk.content
                     yield AssistantResponseChunk(type="thinking", content=chunk.content)
                 elif chunk.type == "tool_call":
-                    task = asyncio.create_task(self.mcpClient.call_tool(chunk.content.function.name, json.loads(chunk.content.function.arguments)))
-                    tool_call_tasks.append(task)
-                    tool_call_info.append(chunk.content)
-                    yield AssistantResponseChunk(type="tool_call", content=f"Calling tool {chunk.content.function.name} with args {str(chunk.content.function.arguments)[:20]}...")
+                    tool_call_param : ChoiceDeltaToolCall = chunk.content
+                    tool_name = tool_call_param.function.name
+                    tool_args = json.loads(tool_call_param.function.arguments)
 
-            tool_call_results = await asyncio.gather(*tool_call_tasks, return_exceptions=True)
+                    task = asyncio.create_task(self.mcpClient.call_tool(tool_call_param.id, tool_name, tool_args))
+                    tool_call_tasks.append(task)
+                    tool_call_message_params.append(tool_call_param)
+
+                    tool_info = ToolCallInfo(id=tool_call_param.id, name=tool_name, args=tool_args, result=None)
+                    tool_call_info[tool_call_param.id] = tool_info
+                    yield AssistantResponseChunk(type="tool_call", content=tool_info)
 
             assistant_msg_record = {
                 "role": "assistant",
                 "content": answer_content,
             }
             if tool_call_info:
-                assistant_msg_record["tool_calls"] = tool_call_info
-
+                assistant_msg_record["tool_calls"] = tool_call_message_params
             messages.append(assistant_msg_record)
 
-            if tool_call_results:
-                messages.extend(
-                    self.get_tool_result_message(tool_call_result, tool_call_info[idx].id)
-                    for idx, tool_call_result in enumerate(tool_call_results)
-                )
-            else:
+            async for task in asyncio.as_completed(tool_call_tasks):
+                result: ToolCallInfo = await task
+                messages.append(self.get_tool_result_message(result.result, result.id))
+                yield AssistantResponseChunk(type="tool_call_result", content=result)
+
+
+            if not tool_call_info:
                 break
 
 class ChatApp:
