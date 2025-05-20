@@ -165,7 +165,7 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
             
             yield history, json.dumps(internal_messages, indent=4)
 
-        rprint(f"internal_messages: {internal_messages}")
+        # rprint(f"internal_messages: {internal_messages}")
     
     def reset_system_message():
         return system_message["content"]

@@ -17,7 +17,20 @@ from openai import AsyncOpenAI, AsyncStream, OpenAI
 from openai.types.chat import ChatCompletionChunk
 from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaToolCall
 
+MODEL_NAME = "qwen3-235b-a22b"
 load_dotenv()  # load environment variables from .env
+
+def create_qwen_client():
+    return AsyncOpenAI(
+        api_key=os.getenv("DASHSCOPE_API_KEY"),
+        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    )
+
+def create_doubao_client():
+    return AsyncOpenAI(
+        api_key=os.getenv("DOUBAO_API_KEY"),
+        base_url="https://ark.cn-beijing.volces.com/api/v3",
+    )
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -137,7 +150,7 @@ class MCPClient:
             # List available tools
             response = await session.list_tools()
             tools = response.tools
-            print("\nConnected to server with tools:", [tool.name for tool in tools])
+            logger.info(f"\nConnected to server with tools: {[tool.name for tool in tools]}")
 
             self.mcpSessions[server_name] = session
             for tool in tools:
@@ -156,10 +169,7 @@ class LLMClient:
     def __init__(self):
         self.available_tools = []
         self.tools : list[Tool] = []
-        self.qwenClient = AsyncOpenAI(
-            api_key=os.getenv("DASHSCOPE_API_KEY"),
-            base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
-        )
+        self.qwenClient = create_qwen_client()
         self.mcpClient = MCPClient()
 
     async def __aenter__(self):
@@ -175,7 +185,7 @@ class LLMClient:
         # rprint(messages)
         response = await self.qwenClient.chat.completions.create(
             # model="qwen-turbo-2024-11-01",
-            model="qwen-plus-2025-04-28",
+            model=MODEL_NAME,
             max_tokens=1000,
             messages=messages,
             tools=self.available_tools,
