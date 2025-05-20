@@ -193,7 +193,7 @@ class LLMClient:
         if type == "tool":
             return {
                 "content": (
-                    result.content if isinstance(result, CallToolResult) else str(result)
+                    result.content[0].text if isinstance(result, CallToolResult) else str(result)
                 ),
                 "role": "tool",
                 "tool_call_id": tool_call_id,
@@ -252,18 +252,18 @@ class LLMClient:
 
             answer_content = ""
             reasoning_content = ""
+            tool_call_message_params : dict[int: ChoiceDeltaToolCall] = {}
             tool_call_tasks = []
-            tool_call_message_params = {}
             tool_call_info = {}
             notified_calls = set()
 
             async for chunk in result:
                 if chunk.type == "answer":
                     answer_content += chunk.content
-                    yield AssistantResponseChunk(type="answer", content=chunk.content)
+                    yield chunk
                 elif chunk.type == "thinking":
                     reasoning_content += chunk.content
-                    yield AssistantResponseChunk(type="thinking", content=chunk.content)
+                    yield chunk
                 elif chunk.type == "tool_call":
                     tool_call_param : ChoiceDeltaToolCall = chunk.content
                     index = tool_call_param.index
@@ -297,7 +297,7 @@ class LLMClient:
                 "content": answer_content,
             }
             if tool_call_info:
-                assistant_msg_record["tool_calls"] = tool_call_message_params.values()
+                assistant_msg_record["tool_calls"] = [param.to_dict() for param in tool_call_message_params.values()]
             messages.append(assistant_msg_record)
 
             async for task in asyncio.as_completed(tool_call_tasks):

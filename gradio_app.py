@@ -12,6 +12,7 @@ from dataclasses import dataclass, asdict
 from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaToolCall
 
 from client import LLMClient, ToolCallInfo
+from rich import print as rprint
 
 
 load_dotenv()  # load environment variables from .env
@@ -20,8 +21,6 @@ def load_system_prompt():
     with open("system_prompt.txt", "r") as f:
         return f.read()
 
-# System message for the chat
-system_message = load_system_prompt()
 
 def updateSystemPrompt(system_prompt, history):
     if len(history) == 0:
@@ -44,11 +43,15 @@ async def initialize_client():
 async def cleanup_client():
     await exit_stack.aclose()
 
+
+# System message for the chat
+system_message = load_system_prompt()
+internal_messages = []
+
 # Create the Gradio interface
 with gr.Blocks(title="MCP Chat Assistant") as demo:
     
     gr.Markdown("# MCP Chat Assistant")
-    gr.Markdown("Chat with an AI assistant that can perform various operations using tools.")
     
     demo.load(initialize_client)
     demo.unload(cleanup_client)
@@ -56,17 +59,25 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     with gr.Row():
 
         with gr.Column(scale=2):
+            gr.Markdown("Chat with an AI assistant that can perform various operations using tools.")
             chatbot = gr.Chatbot(height=600, type="messages")
 
         with gr.Column(scale=1):
-
             gr.Markdown("## System Message")
             system_prompt = gr.Textbox(
                 value=system_message,
-                # label="System Message (instructions for the AI)",
                 show_label=False,
                 container=False,
-                lines=20
+                lines=30
+            )
+        
+        with gr.Column(scale=1):
+            gr.Markdown("## Internal History")
+            internal_history = gr.Textbox(
+                value=json.dumps(internal_messages, indent=2),
+                lines=30,
+                show_label=False,
+                container=False
             )
 
     msg = gr.Textbox(
@@ -93,12 +104,16 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     async def getCompletion(history: list[gr.ChatMessage], system_prompt):
         await init_event.wait()
 
-        updateSystemPrompt(system_prompt, history)
+        updateSystemPrompt(system_prompt, internal_messages)
+
+        # append user message to internal messages
+        internal_messages.append(history[-1])
 
         # Process the message and update history with bot response
+        # the LLMClient will add assistant and tool messages to internal_messages, so no need to update here
         current_type = None
         tool_call_info = {}
-        async for response in llm_client.get_assistant_response(history.copy()):
+        async for response in llm_client.get_assistant_response(internal_messages):
             if response.type == "thinking":
                 if current_type != "thinking":
                     current_type = "thinking"
@@ -148,13 +163,15 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
                 tool_call_message.content = tool_call_result.result.content[0].text
                 tool_call_message.metadata["status"] = "done"
             
-            yield history
+            yield history, json.dumps(internal_messages, indent=4)
+
+        rprint(f"internal_messages: {internal_messages}")
     
     def reset_system_message():
         return system_message["content"]
     
     msg.submit(onUserSubmit, [msg, chatbot], [msg, chatbot], queue=False).then(
-        getCompletion, [chatbot, system_prompt], chatbot
+        getCompletion, [chatbot, system_prompt], [chatbot, internal_history]
     )
     
     clear.click(lambda: None, None, chatbot, queue=False)
