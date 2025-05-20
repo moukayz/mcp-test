@@ -225,15 +225,7 @@ class LLMClient:
                 ):
                     break
 
-                index = tool_call.index
-                if index not in tool_info_map:
-                    tool_info_map[index] = tool_call
-                else:
-                    tool_info_map[index].function.arguments += tool_call.function.arguments
-
-                current_tool_call = tool_info_map[index]
-                if is_valid_json(current_tool_call.function.arguments):
-                    return AssistantResponseChunk(type="tool_call", content=current_tool_call)
+                return AssistantResponseChunk(type="tool_call", content=tool_call)
             
             return None
 
@@ -261,8 +253,9 @@ class LLMClient:
             answer_content = ""
             reasoning_content = ""
             tool_call_tasks = []
-            tool_call_message_params = []
+            tool_call_message_params = {}
             tool_call_info = {}
+            notified_calls = set()
 
             async for chunk in result:
                 if chunk.type == "answer":
@@ -273,23 +266,38 @@ class LLMClient:
                     yield AssistantResponseChunk(type="thinking", content=chunk.content)
                 elif chunk.type == "tool_call":
                     tool_call_param : ChoiceDeltaToolCall = chunk.content
-                    tool_name = tool_call_param.function.name
-                    tool_args = json.loads(tool_call_param.function.arguments)
+                    index = tool_call_param.index
+                    if index not in tool_call_message_params:
+                        tool_call_message_params[index] = tool_call_param
+                    else:
+                        tool_call_message_params[index].function.arguments += tool_call_param.function.arguments
 
-                    task = asyncio.create_task(self.mcpClient.call_tool(tool_call_param.id, tool_name, tool_args))
-                    tool_call_tasks.append(task)
-                    tool_call_message_params.append(tool_call_param)
+                    tool_call_param = tool_call_message_params[index]
+                    if is_valid_json(tool_call_param.function.arguments):
 
-                    tool_info = ToolCallInfo(id=tool_call_param.id, name=tool_name, args=tool_args, result=None)
-                    tool_call_info[tool_call_param.id] = tool_info
-                    yield AssistantResponseChunk(type="tool_call", content=tool_info)
+                        tool_name = tool_call_param.function.name
+                        tool_args = json.loads(tool_call_param.function.arguments)
+
+                        task = asyncio.create_task(self.mcpClient.call_tool(tool_call_param.id, tool_name, tool_args))
+                        tool_call_tasks.append(task)
+
+                        tool_info = ToolCallInfo(id=tool_call_param.id, name=tool_name, args=tool_args, result=None)
+                        tool_call_info[tool_call_param.id] = tool_info
+
+                        notified_calls.add(tool_call_param.id)
+                        yield AssistantResponseChunk(type="tool_call", content=tool_info)
+
+            for id, info in tool_call_info.items():
+                if id not in notified_calls:
+                    logger.error(f"Malformed Tool call {info.name} with args {info.args}")
+
 
             assistant_msg_record = {
                 "role": "assistant",
                 "content": answer_content,
             }
             if tool_call_info:
-                assistant_msg_record["tool_calls"] = tool_call_message_params
+                assistant_msg_record["tool_calls"] = tool_call_message_params.values()
             messages.append(assistant_msg_record)
 
             async for task in asyncio.as_completed(tool_call_tasks):
