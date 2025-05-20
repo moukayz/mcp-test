@@ -180,8 +180,8 @@ class LLMClient:
             messages=messages,
             tools=self.available_tools,
             tool_choice="auto",
-            # extra_body={"enable_thinking": True, "thinking_budget": 200},
-            extra_body={"enable_thinking": True},
+            extra_body={"enable_thinking": True, "thinking_budget": 500},
+            # extra_body={"enable_thinking": True},
             stream=True,
             parallel_tool_calls=True,
         )

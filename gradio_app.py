@@ -33,11 +33,13 @@ def updateSystemPrompt(system_prompt, history):
 
 
 exit_stack = AsyncExitStack()
+init_event = asyncio.Event()
 llm_client : Optional[LLMClient] = None
 
 async def initialize_client():
     global llm_client
     llm_client = await exit_stack.enter_async_context(LLMClient())
+    init_event.set()
 
 async def cleanup_client():
     await exit_stack.aclose()
@@ -89,6 +91,8 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
             pass
     
     async def getCompletion(history: list[gr.ChatMessage], system_prompt):
+        await init_event.wait()
+
         updateSystemPrompt(system_prompt, history)
 
         # Process the message and update history with bot response
