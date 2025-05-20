@@ -169,12 +169,16 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     
     def reset_system_message():
         return system_message["content"]
+
+    def clear_chat():
+        internal_messages.clear()
+        return [], []
     
     msg.submit(onUserSubmit, [msg, chatbot], [msg, chatbot], queue=False).then(
         getCompletion, [chatbot, system_prompt], [chatbot, internal_history]
     )
     
-    clear.click(lambda: None, None, chatbot, queue=False)
+    clear.click(clear_chat, None, [chatbot, internal_history], queue=False)
     reset_system.click(reset_system_message, None, system_prompt, queue=False)
 
 # Start the Gradio app
