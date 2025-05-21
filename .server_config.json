@@ -7,6 +7,18 @@
             "."
         ]
     },
+    "gmail": {
+        "command": "python",
+        "args": [
+            "./server/gmail_server.py"
+        ]
+    },
+    "google-flights": {
+        "command": "python",
+        "args": [
+            "./server/google_flights.py"
+        ]
+    },
     "weather": {
         "command": "python",
         "args": [

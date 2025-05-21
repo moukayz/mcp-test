@@ -1,0 +1,732 @@
+{
+  "search_metadata": {
+    "id": "682f4b65895d90eb8c633a97",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/5b5e2d690ee752f9/682f4b65895d90eb8c633a97.json",
+    "created_at": "2025-05-22 16:05:57 UTC",
+    "processed_at": "2025-05-22 16:05:57 UTC",
+    "google_flights_url": "https://www.google.com/travel/flights?hl=en&gl=us&curr=USD&tfs=CBwQAhoeEgoyMDI1LTA5LTI4agcIARIDSEdIcgcIARIDRFBTGh4SCjIwMjUtMTAtMTJqBwgBEgNEUFNyBwgBEgNIR0hCAQFIAWoAcAGYAQE&tfu=EgIIAQ",
+    "raw_html_file": "https://serpapi.com/searches/5b5e2d690ee752f9/682f4b65895d90eb8c633a97.html",
+    "prettify_html_file": "https://serpapi.com/searches/5b5e2d690ee752f9/682f4b65895d90eb8c633a97.prettify",
+    "total_time_taken": 12.44
+  },
+  "search_parameters": {
+    "engine": "google_flights",
+    "hl": "en",
+    "gl": "us",
+    "type": "1",
+    "departure_id": "HGH",
+    "arrival_id": "DPS",
+    "outbound_date": "2025-09-28",
+    "return_date": "2025-10-12",
+    "bags": 0,
+    "currency": "USD",
+    "sort_by": "1"
+  },
+  "best_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 22:50"
+          },
+          "arrival_airport": {
+            "name": "Singapore Changi Airport",
+            "id": "SIN",
+            "time": "2025-09-29 03:55"
+          },
+          "duration": 305,
+          "airplane": "Boeing 787",
+          "airline": "Scoot",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/TR.png",
+          "travel_class": "Economy",
+          "flight_number": "TR 189",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Wi-Fi for a fee",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 212 kg"
+          ],
+          "overnight": true,
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Singapore Changi Airport",
+            "id": "SIN",
+            "time": "2025-09-29 07:10"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-29 09:50"
+          },
+          "duration": 160,
+          "airplane": "Boeing 787",
+          "airline": "Scoot",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/TR.png",
+          "travel_class": "Economy",
+          "flight_number": "TR 280",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 119 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 195,
+          "name": "Singapore Changi Airport",
+          "id": "SIN",
+          "overnight": true
+        }
+      ],
+      "total_duration": 660,
+      "carbon_emissions": {
+        "this_flight": 332000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -15
+      },
+      "price": 436,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/TR.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3RVVWpFNE9YeFVVakk0TUJvTENML1VBaEFDR2dOVlUwUTRISEMvMUFJPSIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIlNJTiIsbnVsbCwiVFIiLCIxODkiXSxbIlNJTiIsIjIwMjUtMDktMjkiLCJEUFMiLG51bGwsIlRSIiwiMjgwIl1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 08:00"
+          },
+          "arrival_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-28 10:40"
+          },
+          "duration": 160,
+          "airplane": "Airbus A330",
+          "airline": "Cathay Pacific",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+          "travel_class": "Economy",
+          "flight_number": "CX 965",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 112 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-28 12:35"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-28 17:40"
+          },
+          "duration": 305,
+          "airplane": "Airbus A330",
+          "airline": "Cathay Pacific",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+          "travel_class": "Economy",
+          "flight_number": "CX 783",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 251 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 115,
+          "name": "Hong Kong International Airport",
+          "id": "HKG"
+        }
+      ],
+      "total_duration": 580,
+      "carbon_emissions": {
+        "this_flight": 364000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -6
+      },
+      "price": 671,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3REV0RrMk5YeERXRGM0TXhvTENJS01CQkFDR2dOVlUwUTRISENDakFRPSIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIkhLRyIsbnVsbCwiQ1giLCI5NjUiXSxbIkhLRyIsIjIwMjUtMDktMjgiLCJEUFMiLG51bGwsIkNYIiwiNzgzIl1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 13:40"
+          },
+          "arrival_airport": {
+            "name": "Xiamen Gaoqi International Airport",
+            "id": "XMN",
+            "time": "2025-09-28 15:25"
+          },
+          "duration": 105,
+          "airplane": "Boeing 737",
+          "airline": "XiamenAir",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/MF.png",
+          "travel_class": "Economy",
+          "flight_number": "MF 8594",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 78 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Xiamen Gaoqi International Airport",
+            "id": "XMN",
+            "time": "2025-09-28 17:45"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-28 23:05"
+          },
+          "duration": 320,
+          "airplane": "Boeing 737MAX 8 Passenger",
+          "airline": "XiamenAir",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/MF.png",
+          "travel_class": "Economy",
+          "flight_number": "MF 891",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 255 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 140,
+          "name": "Xiamen Gaoqi International Airport",
+          "id": "XMN"
+        }
+      ],
+      "total_duration": 565,
+      "carbon_emissions": {
+        "this_flight": 334000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -14
+      },
+      "price": 854,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/MF.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3hOUmpnMU9UUjhUVVk0T1RFYUN3aTRtZ1VRQWhvRFZWTkVPQnh3dUpvRiIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIlhNTiIsbnVsbCwiTUYiLCI4NTk0Il0sWyJYTU4iLCIyMDI1LTA5LTI4IiwiRFBTIixudWxsLCJNRiIsIjg5MSJdXV0="
+    }
+  ],
+  "other_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 19:35"
+          },
+          "arrival_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-28 22:20"
+          },
+          "duration": 165,
+          "airplane": "Airbus A321neo",
+          "airline": "Cathay Pacific",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+          "travel_class": "Economy",
+          "flight_number": "CX 963",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Wi-Fi for a fee",
+            "In-seat USB outlet",
+            "On-demand video",
+            "Carbon emissions estimate: 103 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-29 10:00"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-29 15:00"
+          },
+          "duration": 300,
+          "airplane": "Boeing 777",
+          "airline": "Cathay Pacific",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+          "travel_class": "Economy",
+          "flight_number": "CX 785",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 225 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 700,
+          "name": "Hong Kong International Airport",
+          "id": "HKG",
+          "overnight": true
+        }
+      ],
+      "total_duration": 1165,
+      "carbon_emissions": {
+        "this_flight": 329000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -15
+      },
+      "price": 687,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3REV0RrMk0zeERXRGM0TlJvTENJZVlCQkFDR2dOVlUwUTRISENIbUFRPSIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIkhLRyIsbnVsbCwiQ1giLCI5NjMiXSxbIkhLRyIsIjIwMjUtMDktMjkiLCJEUFMiLG51bGwsIkNYIiwiNzg1Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 13:35"
+          },
+          "arrival_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-09-28 15:50"
+          },
+          "duration": 135,
+          "airplane": "Comac C919",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 3864",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat power & USB outlets"
+          ],
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-09-28 18:15"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-28 23:30"
+          },
+          "duration": 315,
+          "airplane": "Airbus A321neo",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 625",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 263 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 145,
+          "name": "Guangzhou Baiyun International Airport",
+          "id": "CAN"
+        }
+      ],
+      "total_duration": 595,
+      "carbon_emissions": {
+        "typical_for_this_route": 389000
+      },
+      "price": 1276,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3hEV2pNNE5qUjhRMW8yTWpVYUN3aVg1QWNRQWhvRFZWTkVPQnh3bCtRSCIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIkNBTiIsbnVsbCwiQ1oiLCIzODY0Il0sWyJDQU4iLCIyMDI1LTA5LTI4IiwiRFBTIixudWxsLCJDWiIsIjYyNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 13:50"
+          },
+          "arrival_airport": {
+            "name": "Shenzhen Bao'an International Airport",
+            "id": "SZX",
+            "time": "2025-09-28 16:15"
+          },
+          "duration": 145,
+          "airplane": "Airbus A320",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 8712",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 129 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Shenzhen Bao'an International Airport",
+            "id": "SZX",
+            "time": "2025-09-28 18:50"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-29 00:10"
+          },
+          "duration": 320,
+          "airplane": "Airbus A320neo",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 6065",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 294 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 155,
+          "name": "Shenzhen Bao'an International Airport",
+          "id": "SZX"
+        }
+      ],
+      "total_duration": 620,
+      "carbon_emissions": {
+        "this_flight": 425000,
+        "typical_for_this_route": 389000,
+        "difference_percent": 9
+      },
+      "price": 1276,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZzFEV2pnM01USjhRMW8yTURZMUdnc0lsK1FIRUFJYUExVlRSRGdjY0pma0J3PT0iLFtbIkhHSCIsIjIwMjUtMDktMjgiLCJTWlgiLG51bGwsIkNaIiwiODcxMiJdLFsiU1pYIiwiMjAyNS0wOS0yOCIsIkRQUyIsbnVsbCwiQ1oiLCI2MDY1Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 21:35"
+          },
+          "arrival_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-09-28 23:50"
+          },
+          "duration": 135,
+          "airplane": "Airbus A350",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 3802",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "In-seat USB outlet",
+            "On-demand video",
+            "Carbon emissions estimate: 96 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-09-29 02:35"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-29 07:45"
+          },
+          "duration": 310,
+          "airplane": "Airbus A321neo",
+          "airline": "China Southern",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+          "travel_class": "Economy",
+          "flight_number": "CZ 8481",
+          "legroom": "29 in",
+          "extensions": [
+            "Below average legroom (29 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 263 kg"
+          ],
+          "overnight": true
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 165,
+          "name": "Guangzhou Baiyun International Airport",
+          "id": "CAN",
+          "overnight": true
+        }
+      ],
+      "total_duration": 610,
+      "carbon_emissions": {
+        "this_flight": 360000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -7
+      },
+      "price": 1276,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CZ.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZzFEV2pNNE1ESjhRMW80TkRneEdnc0lsK1FIRUFJYUExVlRSRGdjY0pma0J3PT0iLFtbIkhHSCIsIjIwMjUtMDktMjgiLCJDQU4iLG51bGwsIkNaIiwiMzgwMiJdLFsiQ0FOIiwiMjAyNS0wOS0yOSIsIkRQUyIsbnVsbCwiQ1oiLCI4NDgxIl1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 09:20"
+          },
+          "arrival_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-28 11:35"
+          },
+          "duration": 135,
+          "airplane": "Boeing 737",
+          "airline": "XiamenAir",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/MF.png",
+          "travel_class": "Economy",
+          "flight_number": "MF 8655",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Carbon emissions estimate: 121 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Hong Kong International Airport",
+            "id": "HKG",
+            "time": "2025-09-28 12:35"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-28 17:40"
+          },
+          "duration": 305,
+          "airplane": "Airbus A330",
+          "airline": "Cathay Pacific",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CX.png",
+          "travel_class": "Economy",
+          "flight_number": "CX 783",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "Wi-Fi for a fee",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 251 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 60,
+          "name": "Hong Kong International Airport",
+          "id": "HKG"
+        }
+      ],
+      "total_duration": 500,
+      "carbon_emissions": {
+        "this_flight": 373000,
+        "typical_for_this_route": 389000,
+        "difference_percent": -4
+      },
+      "price": 1590,
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3hOUmpnMk5UVjhRMWczT0RNYUN3anYyUWtRQWhvRFZWTkVPQnh3NzlrSiIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIkhLRyIsbnVsbCwiTUYiLCI4NjU1Il0sWyJIS0ciLCIyMDI1LTA5LTI4IiwiRFBTIixudWxsLCJDWCIsIjc4MyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-09-28 22:50"
+          },
+          "arrival_airport": {
+            "name": "Singapore Changi Airport",
+            "id": "SIN",
+            "time": "2025-09-29 03:55"
+          },
+          "duration": 305,
+          "airplane": "Boeing 787",
+          "airline": "Scoot",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/TR.png",
+          "travel_class": "Premium Economy",
+          "flight_number": "TR 189",
+          "ticket_also_sold_by": [
+            "Singapore Airlines"
+          ],
+          "extensions": [
+            "Extra reclining seat",
+            "Wi-Fi for a fee",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 318 kg"
+          ],
+          "overnight": true,
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Singapore Changi Airport",
+            "id": "SIN",
+            "time": "2025-09-29 06:25"
+          },
+          "arrival_airport": {
+            "name": "I Gusti Ngurah Rai International Airport",
+            "id": "DPS",
+            "time": "2025-09-29 09:00"
+          },
+          "duration": 155,
+          "airplane": "Boeing 787",
+          "airline": "Singapore Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SQ.png",
+          "travel_class": "Economy",
+          "flight_number": "SQ 934",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "Free Wi-Fi",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 101 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 150,
+          "name": "Singapore Changi Airport",
+          "id": "SIN",
+          "overnight": true
+        }
+      ],
+      "total_duration": 610,
+      "carbon_emissions": {
+        "this_flight": 419000,
+        "typical_for_this_route": 389000,
+        "difference_percent": 8
+      },
+      "type": "Round trip",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/multi.png",
+      "departure_token": "WyJDalJJWDNRM09USjJhazVzWkhkQlExZE9abWRDUnkwdExTMHRMUzB0TFc5cmFXUXhNMEZCUVVGQlIyZDJVekp6UkhGc1JEaEJFZ3RVVWpFNE9YeFRVVGt6TkRnYyIsW1siSEdIIiwiMjAyNS0wOS0yOCIsIlNJTiIsbnVsbCwiVFIiLCIxODkiXSxbIlNJTiIsIjIwMjUtMDktMjkiLCJEUFMiLG51bGwsIlNRIiwiOTM0Il1dXQ=="
+    }
+  ],
+  "airports": [
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "HGH",
+            "name": "Hangzhou International Airport"
+          },
+          "city": "Hangzhou",
+          "country": "China",
+          "country_code": "CN",
+          "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS3uOojBmOIThSwxwDBDC8EwtXVKJwuSTR8wV4INHAIomedc-UcVPsTE_0BM9ymZBE2g2JPItCoSpvTMQ",
+          "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSBd-y4lg-GmoBkzDmEtiIOAPa_u7KReDdcRx-kZWR2K8wVkZlYTAAwj_alEatmUWfCSf9pDoLHn9-1eEfXphKF4HBnIGsduACLHysd5o4"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "DPS",
+            "name": "I Gusti Ngurah Rai International Airport"
+          },
+          "city": "Denpasar",
+          "country": "Indonesia",
+          "country_code": "ID",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpjCo287YKiDxrbQlSm3Af70o71dUjCPZ6_dVDyf-1TqPjvjrZ37t33Q_7iDHhYS48wNu0LJdENRBRSg",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQFsxUxjHvh4B-OC3MBZsppnugcvv5-mwb1QyUnDEw4ERAN8pQGYpPooKz04neOm3ivuxDBxp0nyrI4S_UEFevemYjK9tdUmJgtUDr1HgQ"
+        }
+      ]
+    },
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "DPS",
+            "name": "I Gusti Ngurah Rai International Airport"
+          },
+          "city": "Denpasar",
+          "country": "Indonesia",
+          "country_code": "ID",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSpjCo287YKiDxrbQlSm3Af70o71dUjCPZ6_dVDyf-1TqPjvjrZ37t33Q_7iDHhYS48wNu0LJdENRBRSg",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQFsxUxjHvh4B-OC3MBZsppnugcvv5-mwb1QyUnDEw4ERAN8pQGYpPooKz04neOm3ivuxDBxp0nyrI4S_UEFevemYjK9tdUmJgtUDr1HgQ"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "HGH",
+            "name": "Hangzhou International Airport"
+          },
+          "city": "Hangzhou",
+          "country": "China",
+          "country_code": "CN",
+          "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS3uOojBmOIThSwxwDBDC8EwtXVKJwuSTR8wV4INHAIomedc-UcVPsTE_0BM9ymZBE2g2JPItCoSpvTMQ",
+          "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSBd-y4lg-GmoBkzDmEtiIOAPa_u7KReDdcRx-kZWR2K8wVkZlYTAAwj_alEatmUWfCSf9pDoLHn9-1eEfXphKF4HBnIGsduACLHysd5o4"
+        }
+      ]
+    }
+  ]
+}

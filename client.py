@@ -58,8 +58,8 @@ class DoubaoModel(ModelInterface):
 
     async def get_chat_completion(self, messages, tools):
         response = await self.client.chat.completions.create(
-            model="doubao-1-5-thinking-pro-m-250415",
-            max_tokens=1000,
+            model="doubao-1-5-thinking-pro-250415",
+            # max_tokens=1000,
             messages=messages,
             tools=tools,
             tool_choice="auto",
@@ -70,7 +70,7 @@ class DoubaoModel(ModelInterface):
 
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 logger.addHandler(rich_logging.RichHandler())
 
 SERVER_CONFIG_FILE = ".server_config.json"
@@ -159,7 +159,7 @@ class MCPClient:
         await self.connect_to_server(self.mcpServersConfig)
 
     async def call_tool(self, id, tool_name, tool_args) -> ToolCallInfo:
-        logger.info(f"call_tool: {tool_name} with args {str(tool_args)[:100]}...")
+        logger.debug(f"call_tool: {tool_name} with args {str(tool_args)[:100]}...")
         session: ClientSession = self.mcpToolsSessionMap[tool_name]
         if session is None:
             return ToolCallInfo(
@@ -173,9 +173,9 @@ class MCPClient:
             )
 
         result = await session.call_tool(tool_name, tool_args)
-        logger.info(
+        logger.debug(
             f"[Calling tool {tool_name} with args {tool_args}], \n  result: {
-                result.content[0].text}"
+                result.content}"
         )
         return ToolCallInfo(id=id, name=tool_name, args=tool_args, result=result)
 
@@ -254,47 +254,30 @@ class LLMClient:
     async def process_streamed_response(
         self, response: AsyncStream[ChatCompletionChunk]
     ):
-        tool_info_map: dict[int, ChoiceDeltaToolCall] = {}
-
-        def process_thinking_chunk(delta: ChoiceDelta):
-            if delta.tool_calls is not None:
-                assert False, f"UNEXPECTED TOOL CALLS: {delta.tool_calls}"
-
-            return AssistantResponseChunk(
-                type="thinking", content=delta.reasoning_content
-            )
-
-        def process_answer_chunk(delta: ChoiceDelta):
-            return AssistantResponseChunk(type="answer", content=delta.content)
-
-        def process_tool_call_chunk(
-            delta: ChoiceDelta, tool_info_map: dict[int, ChoiceDeltaToolCall]
-        ):
-            for tool_call in delta.tool_calls:
-                if (
-                    tool_call.function
-                    and not tool_call.function.name
-                    and not tool_call.function.arguments
-                ):
-                    break
-
-                return AssistantResponseChunk(type="tool_call", content=tool_call)
-
-            return None
-
         async for chunk in response:
             delta = chunk.choices[0].delta
             if hasattr(delta, "reasoning_content") and delta.reasoning_content != None:
-                yield process_thinking_chunk(delta)
+                if delta.tool_calls is not None:
+                    assert False, f"UNEXPECTED TOOL CALLS: {delta.tool_calls}"
+
+                yield AssistantResponseChunk(
+                    type="thinking", content=delta.reasoning_content
+                )
 
             else:
                 if delta.content is not None and delta.content != "":
-                    yield process_answer_chunk(delta)
+                    yield AssistantResponseChunk(type="answer", content=delta.content)
 
                 if delta.tool_calls is not None:
-                    chunk = process_tool_call_chunk(delta, tool_info_map)
-                    if chunk is not None:
-                        yield chunk
+                    for tool_call in delta.tool_calls:
+                        if (
+                            tool_call.function
+                            and not tool_call.function.name
+                            and not tool_call.function.arguments
+                        ):
+                            break
+
+                        yield AssistantResponseChunk(type="tool_call", content=tool_call)
 
     async def get_assistant_response(self, messages):
 

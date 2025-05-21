@@ -1,0 +1,1435 @@
+{
+  "search_metadata": {
+    "id": "682f405d73d224cf3c0d1283",
+    "status": "Success",
+    "json_endpoint": "https://serpapi.com/searches/5b5e2d690ee752f9/682f405d73d224cf3c0d1283.json",
+    "created_at": "2025-05-22 15:18:53 UTC",
+    "processed_at": "2025-05-22 15:18:53 UTC",
+    "google_flights_url": "https://www.google.com/travel/flights?hl=en&gl=us&curr=USD&tfs=CBwQAhoeEgoyMDI1LTA1LTI2agcIARIDSEdIcgcIARIDUEVLQgEBSAFwAZgBAg&tfu=EgIIAQ",
+    "raw_html_file": "https://serpapi.com/searches/5b5e2d690ee752f9/682f405d73d224cf3c0d1283.html",
+    "prettify_html_file": "https://serpapi.com/searches/5b5e2d690ee752f9/682f405d73d224cf3c0d1283.prettify",
+    "total_time_taken": 0.53
+  },
+  "search_parameters": {
+    "engine": "google_flights",
+    "hl": "en",
+    "gl": "us",
+    "type": "2",
+    "departure_id": "HGH",
+    "arrival_id": "PEK",
+    "outbound_date": "2025-05-26",
+    "currency": "USD"
+  },
+  "best_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 11:30"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 13:50"
+          },
+          "duration": 140,
+          "airplane": "Airbus A330",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7278",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat USB outlet",
+            "On-demand video",
+            "Carbon emissions estimate: 108 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 108000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -11
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjeU56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzI3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 09:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 11:25"
+          },
+          "duration": 145,
+          "airplane": "Airbus A321",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1705",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 146 kg"
+          ]
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "this_flight": 146000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 21
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01EVWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcwNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 10:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 12:20"
+          },
+          "duration": 140,
+          "airplane": "Airbus A320",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1707",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 133 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 133000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 10
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01EY2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcwNyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 12:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 14:20"
+          },
+          "duration": 140,
+          "airplane": "Boeing 787",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1711",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 96 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 96000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -21
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01URWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcxMSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 13:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 15:15"
+          },
+          "duration": 135,
+          "airplane": "Airbus A330",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1713",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 100 kg"
+          ]
+        }
+      ],
+      "total_duration": 135,
+      "carbon_emissions": {
+        "this_flight": 101000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -17
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01UTWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcxMyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 15:55"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 18:30"
+          },
+          "duration": 155,
+          "airplane": "Airbus A321",
+          "airline": "Zhejiang Loong Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/GJ.png",
+          "travel_class": "Economy",
+          "flight_number": "GJ 8987",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 116 kg"
+          ]
+        }
+      ],
+      "total_duration": 155,
+      "carbon_emissions": {
+        "this_flight": 117000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -3
+      },
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/GJ.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pIU2pnNU9EYzRIQT09IixbWyJIR0giLCIyMDI1LTA1LTI2IiwiUEVLIixudWxsLCJHSiIsIjg5ODciXV1d"
+    }
+  ],
+  "other_flights": [
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 22:15"
+          },
+          "arrival_airport": {
+            "name": "Yantai Penglai International Airport",
+            "id": "YNT",
+            "time": "2025-05-27 00:10"
+          },
+          "duration": 115,
+          "airplane": "Boeing 737",
+          "airline": "Shandong",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SC.png",
+          "travel_class": "Economy",
+          "flight_number": "SC 7640",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 89 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Yantai Penglai International Airport",
+            "id": "YNT",
+            "time": "2025-05-27 07:20"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-27 08:50"
+          },
+          "duration": 90,
+          "airplane": "Boeing 737",
+          "airline": "Shandong",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SC.png",
+          "travel_class": "Economy",
+          "flight_number": "SC 7611",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 63 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 430,
+          "name": "Yantai Penglai International Airport",
+          "id": "YNT",
+          "overnight": true
+        }
+      ],
+      "total_duration": 635,
+      "carbon_emissions": {
+        "this_flight": 153000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 26
+      },
+      "price": 305,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/SC.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZzFUUXpjMk5EQjhVME0zTmpFeEdnc0l4KzBCRUFJYUExVlRSRGdjY01mdEFRPT0iLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJZTlQiLG51bGwsIlNDIiwiNzY0MCJdLFsiWU5UIiwiMjAyNS0wNS0yNyIsIlBFSyIsbnVsbCwiU0MiLCI3NjExIl1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 07:20"
+          },
+          "arrival_airport": {
+            "name": "Dalian Zhoushuizi International Airport",
+            "id": "DLC",
+            "time": "2025-05-26 09:25"
+          },
+          "duration": 125,
+          "airplane": "Boeing 737",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7584",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Carbon emissions estimate: 111 kg"
+          ]
+        },
+        {
+          "departure_airport": {
+            "name": "Dalian Zhoushuizi International Airport",
+            "id": "DLC",
+            "time": "2025-05-26 20:30"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 22:00"
+          },
+          "duration": 90,
+          "airplane": "Boeing 737",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7104",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Carbon emissions estimate: 76 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 665,
+          "name": "Dalian Zhoushuizi International Airport",
+          "id": "DLC"
+        }
+      ],
+      "total_duration": 880,
+      "carbon_emissions": {
+        "this_flight": 188000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 55
+      },
+      "price": 349,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZzFJVlRjMU9EUjhTRlUzTVRBMEdnc0lvcEFDRUFJYUExVlRSRGdjY0tLUUFnPT0iLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJETEMiLG51bGwsIkhVIiwiNzU4NCJdLFsiRExDIiwiMjAyNS0wNS0yNiIsIlBFSyIsbnVsbCwiSFUiLCI3MTA0Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 21:20"
+          },
+          "arrival_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-05-26 23:40"
+          },
+          "duration": 140,
+          "airplane": "Airbus A320",
+          "airline": "Shenzhen",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/ZH.png",
+          "travel_class": "Economy",
+          "flight_number": "ZH 9982",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 103 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        },
+        {
+          "departure_airport": {
+            "name": "Guangzhou Baiyun International Airport",
+            "id": "CAN",
+            "time": "2025-05-27 07:05"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-27 10:20"
+          },
+          "duration": 195,
+          "airplane": "Boeing 737",
+          "airline": "Shenzhen",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/ZH.png",
+          "travel_class": "Economy",
+          "flight_number": "ZH 9147",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Carbon emissions estimate: 169 kg"
+          ]
+        }
+      ],
+      "layovers": [
+        {
+          "duration": 445,
+          "name": "Guangzhou Baiyun International Airport",
+          "id": "CAN",
+          "overnight": true
+        }
+      ],
+      "total_duration": 780,
+      "carbon_emissions": {
+        "this_flight": 273000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 126
+      },
+      "price": 355,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/ZH.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZzFhU0RrNU9ESjhXa2c1TVRRM0dnc0l6WlFDRUFJYUExVlRSRGdjY00yVUFnPT0iLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJDQU4iLG51bGwsIlpIIiwiOTk4MiJdLFsiQ0FOIiwiMjAyNS0wNS0yNyIsIlBFSyIsbnVsbCwiWkgiLCI5MTQ3Il1dXQ=="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 07:25"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 09:45"
+          },
+          "duration": 140,
+          "airplane": "Boeing 737",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7378",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Carbon emissions estimate: 130 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 130000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 7
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjek56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzM3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 08:25"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 10:40"
+          },
+          "duration": 135,
+          "airplane": "Airbus A330",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7478",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "On-demand video",
+            "Carbon emissions estimate: 131 kg"
+          ]
+        }
+      ],
+      "total_duration": 135,
+      "carbon_emissions": {
+        "this_flight": 132000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 9
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjME56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzQ3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 10:35"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 12:55"
+          },
+          "duration": 140,
+          "airplane": "Boeing 737",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7578",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Carbon emissions estimate: 130 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 130000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 7
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjMU56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzU3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 15:45"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 18:30"
+          },
+          "duration": 165,
+          "airplane": "Airbus A330",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7178",
+          "legroom": "32 in",
+          "extensions": [
+            "Above average legroom (32 in)",
+            "On-demand video",
+            "Carbon emissions estimate: 131 kg"
+          ]
+        }
+      ],
+      "total_duration": 165,
+      "carbon_emissions": {
+        "this_flight": 132000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 9
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjeE56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzE3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 21:30"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 23:40"
+          },
+          "duration": 130,
+          "airplane": "Airbus A330",
+          "airline": "Hainan",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+          "travel_class": "Economy",
+          "flight_number": "HU 7678",
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat USB outlet",
+            "On-demand video",
+            "Carbon emissions estimate: 108 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "total_duration": 130,
+      "carbon_emissions": {
+        "this_flight": 108000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -11
+      },
+      "price": 380,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/HU.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pJVlRjMk56Z2FDd2lRcUFJUUFob0RWVk5FT0J4d2tLZ0MiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkhVIiwiNzY3OCJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 07:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 09:20"
+          },
+          "duration": 140,
+          "airplane": "Airbus A320",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1701",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 133 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 133000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 10
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01ERWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcwMSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 08:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 10:20"
+          },
+          "duration": 140,
+          "airplane": "Airbus A321",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1703",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 141 kg"
+          ]
+        }
+      ],
+      "total_duration": 140,
+      "carbon_emissions": {
+        "this_flight": 142000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 17
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01ETWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcwMyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 11:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 13:25"
+          },
+          "duration": 145,
+          "airplane": "Comac C919",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1709",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat USB outlet"
+          ]
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "typical_for_this_route": 121000
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01Ea2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcwOSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 14:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 16:25"
+          },
+          "duration": 145,
+          "airplane": "Airbus A320",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1715",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 133 kg"
+          ]
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "this_flight": 133000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 10
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01UVWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcxNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 15:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 17:25"
+          },
+          "duration": 145,
+          "airplane": "Airbus A321",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1717",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 141 kg"
+          ]
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "this_flight": 142000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 17
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01UY2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcxNyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 16:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 18:45"
+          },
+          "duration": 165,
+          "airplane": "Airbus A321",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1719",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 146 kg"
+          ]
+        }
+      ],
+      "total_duration": 165,
+      "carbon_emissions": {
+        "this_flight": 146000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 21
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01Ua2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcxOSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 17:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 19:30"
+          },
+          "duration": 150,
+          "airplane": "Boeing 737MAX 8 Passenger",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1721",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 134 kg"
+          ]
+        }
+      ],
+      "total_duration": 150,
+      "carbon_emissions": {
+        "this_flight": 135000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 12
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01qRWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcyMSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 18:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 20:30"
+          },
+          "duration": 150,
+          "airplane": "Airbus A319",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1723",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "Stream media to your device",
+            "Carbon emissions estimate: 148 kg"
+          ]
+        }
+      ],
+      "total_duration": 150,
+      "carbon_emissions": {
+        "this_flight": 148000,
+        "typical_for_this_route": 121000,
+        "difference_percent": 22
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01qTWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcyMyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 19:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 21:25"
+          },
+          "duration": 145,
+          "airplane": "Airbus A350",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1725",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "Free Wi-Fi",
+            "In-seat power & USB outlets",
+            "On-demand video",
+            "Carbon emissions estimate: 109 kg"
+          ]
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "this_flight": 109000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -10
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01qVWFDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcyNSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 20:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 22:25"
+          },
+          "duration": 145,
+          "airplane": "Airbus A350",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1727",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 100 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "total_duration": 145,
+      "carbon_emissions": {
+        "this_flight": 101000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -17
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01qY2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcyNyJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 21:00"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 23:30"
+          },
+          "duration": 150,
+          "airplane": "Airbus A330",
+          "airline": "Air China",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+          "travel_class": "Economy",
+          "flight_number": "CA 1729",
+          "ticket_also_sold_by": [
+            "Shandong"
+          ],
+          "legroom": "31 in",
+          "extensions": [
+            "Average legroom (31 in)",
+            "In-seat power outlet",
+            "Carbon emissions estimate: 100 kg"
+          ],
+          "often_delayed_by_over_30_min": true
+        }
+      ],
+      "total_duration": 150,
+      "carbon_emissions": {
+        "this_flight": 101000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -17
+      },
+      "price": 414,
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/CA.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pEUVRFM01qa2FDd2lmd3dJUUFob0RWVk5FT0J4d244TUMiLFtbIkhHSCIsIjIwMjUtMDUtMjYiLCJQRUsiLG51bGwsIkNBIiwiMTcyOSJdXV0="
+    },
+    {
+      "flights": [
+        {
+          "departure_airport": {
+            "name": "Hangzhou International Airport",
+            "id": "HGH",
+            "time": "2025-05-26 07:10"
+          },
+          "arrival_airport": {
+            "name": "Beijing Capital International Airport",
+            "id": "PEK",
+            "time": "2025-05-26 09:40"
+          },
+          "duration": 150,
+          "airplane": "Airbus A321",
+          "airline": "Zhejiang Loong Airlines",
+          "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/GJ.png",
+          "travel_class": "Economy",
+          "flight_number": "GJ 8887",
+          "legroom": "30 in",
+          "extensions": [
+            "Average legroom (30 in)",
+            "In-seat USB outlet",
+            "Carbon emissions estimate: 116 kg"
+          ]
+        }
+      ],
+      "total_duration": 150,
+      "carbon_emissions": {
+        "this_flight": 117000,
+        "typical_for_this_route": 121000,
+        "difference_percent": -3
+      },
+      "type": "One way",
+      "airline_logo": "https://www.gstatic.com/flights/airline_logos/70px/GJ.png",
+      "booking_token": "WyJDalJJZDB0d1ZFNVNjSE5pT1ZWQlFqRXpPRUZDUnkwdExTMHRMUzB0TFhaMGFtUXhORUZCUVVGQlIyZDJVVVl3U1cxeVMyZEJFZ1pIU2pnNE9EYzRIQT09IixbWyJIR0giLCIyMDI1LTA1LTI2IiwiUEVLIixudWxsLCJHSiIsIjg4ODciXV1d"
+    }
+  ],
+  "price_insights": {
+    "lowest_price": 305,
+    "price_level": "high",
+    "typical_price_range": [
+      175,
+      240
+    ],
+    "price_history": [
+      [
+        1742659200,
+        183
+      ],
+      [
+        1742745600,
+        183
+      ],
+      [
+        1742832000,
+        183
+      ],
+      [
+        1742918400,
+        182
+      ],
+      [
+        1743004800,
+        182
+      ],
+      [
+        1743091200,
+        182
+      ],
+      [
+        1743177600,
+        170
+      ],
+      [
+        1743264000,
+        182
+      ],
+      [
+        1743350400,
+        182
+      ],
+      [
+        1743436800,
+        182
+      ],
+      [
+        1743523200,
+        182
+      ],
+      [
+        1743609600,
+        178
+      ],
+      [
+        1743696000,
+        185
+      ],
+      [
+        1743782400,
+        178
+      ],
+      [
+        1743868800,
+        178
+      ],
+      [
+        1743955200,
+        178
+      ],
+      [
+        1744041600,
+        178
+      ],
+      [
+        1744128000,
+        177
+      ],
+      [
+        1744214400,
+        176
+      ],
+      [
+        1744300800,
+        176
+      ],
+      [
+        1744387200,
+        177
+      ],
+      [
+        1744473600,
+        177
+      ],
+      [
+        1744560000,
+        177
+      ],
+      [
+        1744646400,
+        177
+      ],
+      [
+        1744732800,
+        177
+      ],
+      [
+        1744819200,
+        175
+      ],
+      [
+        1744905600,
+        175
+      ],
+      [
+        1744992000,
+        177
+      ],
+      [
+        1745078400,
+        177
+      ],
+      [
+        1745164800,
+        177
+      ],
+      [
+        1745251200,
+        177
+      ],
+      [
+        1745337600,
+        177
+      ],
+      [
+        1745424000,
+        177
+      ],
+      [
+        1745510400,
+        177
+      ],
+      [
+        1745596800,
+        177
+      ],
+      [
+        1745683200,
+        177
+      ],
+      [
+        1745769600,
+        177
+      ],
+      [
+        1745856000,
+        177
+      ],
+      [
+        1745942400,
+        177
+      ],
+      [
+        1746028800,
+        178
+      ],
+      [
+        1746115200,
+        178
+      ],
+      [
+        1746201600,
+        178
+      ],
+      [
+        1746288000,
+        178
+      ],
+      [
+        1746374400,
+        178
+      ],
+      [
+        1746460800,
+        178
+      ],
+      [
+        1746547200,
+        178
+      ],
+      [
+        1746633600,
+        179
+      ],
+      [
+        1746720000,
+        179
+      ],
+      [
+        1746806400,
+        179
+      ],
+      [
+        1746892800,
+        179
+      ],
+      [
+        1746979200,
+        179
+      ],
+      [
+        1747065600,
+        179
+      ],
+      [
+        1747152000,
+        214
+      ],
+      [
+        1747238400,
+        257
+      ],
+      [
+        1747324800,
+        304
+      ],
+      [
+        1747411200,
+        304
+      ],
+      [
+        1747497600,
+        304
+      ],
+      [
+        1747584000,
+        304
+      ],
+      [
+        1747670400,
+        304
+      ],
+      [
+        1747756800,
+        304
+      ],
+      [
+        1747843200,
+        305
+      ]
+    ]
+  },
+  "airports": [
+    {
+      "departure": [
+        {
+          "airport": {
+            "id": "HGH",
+            "name": "Hangzhou International Airport"
+          },
+          "city": "Hangzhou",
+          "country": "China",
+          "country_code": "CN",
+          "image": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS3uOojBmOIThSwxwDBDC8EwtXVKJwuSTR8wV4INHAIomedc-UcVPsTE_0BM9ymZBE2g2JPItCoSpvTMQ",
+          "thumbnail": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSBd-y4lg-GmoBkzDmEtiIOAPa_u7KReDdcRx-kZWR2K8wVkZlYTAAwj_alEatmUWfCSf9pDoLHn9-1eEfXphKF4HBnIGsduACLHysd5o4"
+        }
+      ],
+      "arrival": [
+        {
+          "airport": {
+            "id": "PEK",
+            "name": "Beijing Capital International Airport"
+          },
+          "city": "Beijing",
+          "country": "China",
+          "country_code": "CN",
+          "image": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ9v_tNYxaummsU2qbFn8zuYzkcG0x6qCvqB2gbBnx-2FVlZZPsnkvUXGk07vxotk-0vRQMUYCjj2d4Wg",
+          "thumbnail": "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSzsj_yw6o3vb8i54_D21VgI5rTohxexQkZ0TrZKDKJwTSKw2yqnRYLoIcBWIY50BlHo-OPMm68zbUO-qnFvmQmm6jvtWPwo7WOzjNGX_A"
+        }
+      ]
+    }
+  ]
+}

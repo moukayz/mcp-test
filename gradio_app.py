@@ -56,21 +56,20 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     demo.load(initialize_client)
     demo.unload(cleanup_client)
     
+    gr.Markdown("## System Message")
+    system_prompt = gr.Textbox(
+        value=system_message,
+        show_label=False,
+        container=False,
+        lines=10
+    )
+
     with gr.Row():
 
-        with gr.Column(scale=2):
-            gr.Markdown("Chat with an AI assistant that can perform various operations using tools.")
+        with gr.Column(scale=3):
+            gr.Markdown("# Chat with an AI assistant")
             chatbot = gr.Chatbot(height=600, type="messages")
 
-        with gr.Column(scale=1):
-            gr.Markdown("## System Message")
-            system_prompt = gr.Textbox(
-                value=system_message,
-                show_label=False,
-                container=False,
-                lines=30
-            )
-        
         with gr.Column(scale=1):
             gr.Markdown("## Internal History")
             internal_history = gr.Textbox(
