@@ -1,31 +1,15 @@
-# Text Transformer
+# Config
+1. create `.env` from `.env_example`, add your api keys
+2. create `.server_config.json` from `.server_config_example.json`, modify servers and add your brave search api key
 
-A simple Gradio application that allows users to transform text in various ways.
+# Install `UV`
+https://docs.astral.sh/uv/getting-started/installation/
+ 
+# Run client app
+uv run cli_app.py
 
-## Features
+# Run gradio web app
+uv run gradio_app.py
 
-- Convert text to uppercase
-- Convert text to lowercase
-- Reverse text
-- Count words and characters
-
-## Installation
-
-1. Clone this repository
-2. Install the dependencies:
-   ```
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-Run the application with:
-```
-python app.py
-```
-
-This will start a local web server, and the application will be available at http://127.0.0.1:7860 in your web browser.
-
-## Screenshots
-
-The application provides a simple interface with an input text area, buttons for different transformations, and an output text area.
+# Test any server
+uv run mcp dev ./server/weather.py

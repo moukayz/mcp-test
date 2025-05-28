@@ -38,7 +38,7 @@
             "@modelcontextprotocol/server-brave-search"
         ],
         "env": {
-            "BRAVE_API_KEY": "BSAPLs6U9IdkmBc-OGLjaRlh4_yis0I"
+            "BRAVE_API_KEY": "YOUR_API_KEY"
         }
     },
     "fetch": {"command": "uvx", "args": ["mcp-server-fetch"]}

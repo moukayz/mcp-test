@@ -73,7 +73,6 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(rich_logging.RichHandler())
 
-SERVER_CONFIG_FILE = ".server_config.json"
 
 
 def get_tools_format(tools, type="qwen"):
@@ -118,12 +117,8 @@ class ToolCallInfo:
     result: CallToolResult
 
 
-@dataclass
-class AssistantResponseChunk:
-    type: str
-    # content: str | dict | ChoiceDeltaToolCall | ToolCallInfo
-    content: str | dict | ToolCallInfo
 
+SERVER_CONFIG_FILE = ".server_config.json"
 
 class MCPClient:
     def __init__(self):
@@ -153,8 +148,8 @@ class MCPClient:
         Additional Notes: {note}
         """
 
-    async def initialize(self):
-        with open(SERVER_CONFIG_FILE, "r") as f:
+    async def initialize(self, config_file=SERVER_CONFIG_FILE):
+        with open(config_file, "r") as f:
             self.mcpServersConfig = json.load(f)
         await self.connect_to_server(self.mcpServersConfig)
 
@@ -173,10 +168,10 @@ class MCPClient:
             )
 
         result = await session.call_tool(tool_name, tool_args)
-        logger.debug(
-            f"[Calling tool {tool_name} with args {tool_args}], \n  result: {
-                result.content}"
-        )
+        # logger.debug(
+        #     f"[Calling tool {tool_name} with args {tool_args}], \n  result: {
+        #         result.content}"
+        # )
         return ToolCallInfo(id=id, name=tool_name, args=tool_args, result=result)
 
     async def connect_to_server(self, configs: dict):
@@ -212,16 +207,22 @@ class MCPClient:
         await self.exit_stack.aclose()
 
 
+@dataclass
+class AssistantResponseChunk:
+    type: str
+    content: str | dict | ToolCallInfo
+
 class LLMClient:
-    def __init__(self):
+    def __init__(self, mcp_config_file=SERVER_CONFIG_FILE):
         self.available_tools = []
         self.tools: list[Tool] = []
         self.qwenClient = QwenModel()
         self.doubaoClient = DoubaoModel()
         self.mcpClient = MCPClient()
+        self.mcp_config_file = mcp_config_file
 
     async def __aenter__(self):
-        await self.mcpClient.initialize()
+        await self.mcpClient.initialize(config_file=self.mcp_config_file)
         self.tools = self.mcpClient.list_tools()
         self.available_tools = get_tools_format(self.tools, type="qwen")
         return self

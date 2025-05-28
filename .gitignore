@@ -11,3 +11,4 @@ wheels/
 .env
 token.pickle
 gmail_creds.json
+.server_config.json

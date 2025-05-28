@@ -37,7 +37,7 @@ llm_client : Optional[LLMClient] = None
 
 async def initialize_client():
     global llm_client
-    llm_client = await exit_stack.enter_async_context(LLMClient())
+    llm_client = await exit_stack.enter_async_context(LLMClient(mcp_config_file=".server_config.json"))
     init_event.set()
 
 async def cleanup_client():
