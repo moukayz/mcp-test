@@ -46,7 +46,6 @@ async def cleanup_client():
 
 # System message for the chat
 system_message = load_system_prompt()
-internal_messages = []
 
 # Create the Gradio interface
 with gr.Blocks(title="MCP Chat Assistant") as demo:
@@ -56,28 +55,9 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     demo.load(initialize_client)
     demo.unload(cleanup_client)
     
-    gr.Markdown("## System Message")
-    system_prompt = gr.Textbox(
-        value=system_message,
-        show_label=False,
-        container=False,
-        lines=10
-    )
 
-    with gr.Row():
-
-        with gr.Column(scale=3):
-            gr.Markdown("# Chat with an AI assistant")
-            chatbot = gr.Chatbot(height=600, type="messages")
-
-        with gr.Column(scale=1):
-            gr.Markdown("## Internal History")
-            internal_history = gr.Textbox(
-                value=json.dumps(internal_messages, indent=2),
-                lines=30,
-                show_label=False,
-                container=False
-            )
+    gr.Markdown("# Chat with an AI assistant")
+    chatbot = gr.Chatbot(height=700, type="messages")
 
     msg = gr.Textbox(
         placeholder="Ask a question or request an action...",
@@ -88,6 +68,24 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
     with gr.Row():
         clear = gr.Button("Clear Chat")
         reset_system = gr.Button("Reset System Message")
+
+    with gr.Row():
+        with gr.Column(scale=1):
+            gr.Markdown("## Internal History")
+            internal_history = gr.Textbox(
+                value="[]",
+                lines=30,
+                show_label=False,
+                container=False
+            )
+        with gr.Column(scale=1):
+            gr.Markdown("## System Message")
+            system_prompt = gr.Textbox(
+                value=system_message,
+                show_label=False,
+                container=False,
+                lines=30
+            )
     
     def onUserSubmit(user_input, history):
         # Add user message to history
@@ -100,13 +98,15 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
         except Exception as e:
             pass
     
-    async def getCompletion(history: list[gr.ChatMessage], system_prompt):
+    async def getCompletion(history: list[gr.ChatMessage], system_prompt, internal_history):
         await init_event.wait()
 
+        internal_messages = json.loads(internal_history)
         updateSystemPrompt(system_prompt, internal_messages)
 
         # append user message to internal messages
         internal_messages.append(history[-1])
+        rprint(internal_messages)
 
         # Process the message and update history with bot response
         # the LLMClient will add assistant and tool messages to internal_messages, so no need to update here
@@ -149,8 +149,8 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
                 tool_info: ToolCallInfo = response.content
                 new_message = gr.ChatMessage(
                     role="assistant",
-                    content=f"calling...",
-                    metadata={"title": f"Calling tool {tool_info.name} with args {str(tool_info.args)[:20]}...", "status": "pending"}
+                    content=f"calling, args: {str(tool_info.args)}",
+                    metadata={"title": f"Calling tool {tool_info.name} ...", "status": "pending"}
                 )
                 history.append(new_message)
                 tool_call_info[tool_info.id] = new_message
@@ -164,17 +164,16 @@ with gr.Blocks(title="MCP Chat Assistant") as demo:
             
             yield history, json.dumps(internal_messages, indent=4)
 
-        # rprint(f"internal_messages: {internal_messages}")
-    
+        yield history, json.dumps(internal_messages, indent=4)
+
     def reset_system_message():
         return system_message["content"]
 
     def clear_chat():
-        internal_messages.clear()
-        return [], []
+        return [], "[]"
     
     msg.submit(onUserSubmit, [msg, chatbot], [msg, chatbot], queue=False).then(
-        getCompletion, [chatbot, system_prompt], [chatbot, internal_history]
+        getCompletion, [chatbot, system_prompt, internal_history], [chatbot, internal_history]
     )
     
     clear.click(clear_chat, None, [chatbot, internal_history], queue=False)
