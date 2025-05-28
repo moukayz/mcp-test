@@ -1,22 +1,21 @@
-from abc import abstractmethod
-from typing import Any
-from rich import print as rprint, logging as rich_logging
 import asyncio
-from dataclasses import dataclass, field
 import json
-import os
 import logging
-
+import os
+from abc import abstractmethod
 from contextlib import AsyncExitStack
-
-from mcp import ClientSession, StdioServerParameters, Tool
-from mcp.client.stdio import stdio_client
-from mcp.types import CallToolResult, CallToolRequest
+from dataclasses import dataclass, field
+from typing import Any
 
 from dotenv import load_dotenv
+from mcp import ClientSession, StdioServerParameters, Tool
+from mcp.client.stdio import stdio_client
+from mcp.types import CallToolRequest, CallToolResult
 from openai import AsyncOpenAI, AsyncStream, OpenAI
 from openai.types.chat import ChatCompletionChunk
 from openai.types.chat.chat_completion_chunk import ChoiceDelta, ChoiceDeltaToolCall
+from rich import logging as rich_logging
+from rich import print as rprint
 
 MODEL_NAME = "qwen3-235b-a22b"
 load_dotenv()  # load environment variables from .env
@@ -74,7 +73,6 @@ logger.setLevel(logging.DEBUG)
 logger.addHandler(rich_logging.RichHandler())
 
 
-
 def get_tools_format(tools, type="qwen"):
     if type == "qwen":
         available_tools = [
@@ -117,8 +115,8 @@ class ToolCallInfo:
     result: CallToolResult
 
 
-
 SERVER_CONFIG_FILE = ".server_config.json"
+
 
 class MCPClient:
     def __init__(self):
@@ -212,6 +210,7 @@ class AssistantResponseChunk:
     type: str
     content: str | dict | ToolCallInfo
 
+
 class LLMClient:
     def __init__(self, mcp_config_file=SERVER_CONFIG_FILE):
         self.available_tools = []
@@ -278,10 +277,11 @@ class LLMClient:
                         ):
                             break
 
-                        yield AssistantResponseChunk(type="tool_call", content=tool_call)
+                        yield AssistantResponseChunk(
+                            type="tool_call", content=tool_call
+                        )
 
     async def get_assistant_response(self, messages):
-
         while True:
             response = await self.get_chat_completion(messages)
 
@@ -313,7 +313,6 @@ class LLMClient:
 
                     tool_call_param = tool_call_message_params[index]
                     if is_valid_json(tool_call_param.function.arguments):
-
                         tool_name = tool_call_param.function.name
                         tool_args = json.loads(tool_call_param.function.arguments)
 
@@ -360,4 +359,3 @@ class LLMClient:
 
             if not tool_call_info:
                 break
-
