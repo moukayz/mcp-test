@@ -4,7 +4,6 @@ from client import LLMClient
 
 
 class ChatApp:
-
     async def chat_loop(self):
         """Run an interactive chat loop"""
         """Process a query using Claude and available tools"""
@@ -84,5 +83,4 @@ def load_system_prompt():
 
 
 if __name__ == "__main__":
-
     asyncio.run(ChatApp().chat_loop())

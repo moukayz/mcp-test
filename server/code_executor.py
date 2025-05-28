@@ -5,7 +5,7 @@ import traceback
 import subprocess
 
 # Initialize FastMCP server
-mcp = FastMCP("code_executor")
+mcp = FastMCP("code_executor", stateless_http=True, port=3000)
 
 @mcp.tool()
 async def execute_python_code(code: str) -> str:
@@ -77,4 +77,4 @@ async def execute_bash_script(script: str) -> str:
 
 if __name__ == "__main__":
     # Initialize and run the server
-    mcp.run(transport='stdio') 
+    mcp.run(transport='streamable-http') 
